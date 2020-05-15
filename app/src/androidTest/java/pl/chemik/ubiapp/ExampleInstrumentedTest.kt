@@ -1,4 +1,4 @@
-package pl.chemik.ubiapp_orderinthewarehouses
+package pl.chemik.ubiapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

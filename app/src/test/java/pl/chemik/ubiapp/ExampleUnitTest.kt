@@ -1,4 +1,4 @@
-package pl.chemik.ubiapp_orderinthewarehouses
+package pl.chemik.ubiapp
 
 import org.junit.Test
 

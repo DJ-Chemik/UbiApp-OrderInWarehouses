@@ -1,4 +1,4 @@
-package pl.chemik.ubiapp_orderinthewarehouses
+package pl.chemik.ubiapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
