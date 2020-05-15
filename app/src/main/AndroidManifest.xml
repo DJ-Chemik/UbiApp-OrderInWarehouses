@@ -9,7 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="pl.chemik.ubiapp.MainActivity">
+        <activity android:name=".activities.QRGeneratingActivity"></activity>
+        <activity android:name=".activities.ItemInformationActivity" />
+        <activity android:name=".activities.ItemsListActivity" />
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".activities.BoxesListActivity" />
+        <activity
+            android:name=".activities.LocationsListActivity"
+            android:label="@string/title_activity_locations_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
