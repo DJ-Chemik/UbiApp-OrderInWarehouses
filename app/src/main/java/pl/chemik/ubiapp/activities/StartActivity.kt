@@ -29,6 +29,6 @@ class StartActivity : AppCompatActivity() {
     }
 
     fun clickExit(view: View) {
-
+        super.onBackPressed();
     }
 }
