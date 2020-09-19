@@ -1,4 +1,4 @@
-package pl.chemik.ubiapp.dao.entities
+package pl.chemik.ubiapp.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

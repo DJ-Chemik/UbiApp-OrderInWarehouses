@@ -1,4 +1,4 @@
-package pl.chemik.ubiapp.dao.entities
+package pl.chemik.ubiapp.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -8,12 +8,9 @@ import androidx.room.PrimaryKey
 @Entity(
     indices = [Index(value = ["name"])]
 )
-data class Item (
+data class Item(
     @ColumnInfo(name = "name")
     var name: String,
-
-//    @ColumnInfo(name = "pictures")
-//    var pictures: ByteArray?,
 
     @ColumnInfo(name = "description")
     var description: String?,
