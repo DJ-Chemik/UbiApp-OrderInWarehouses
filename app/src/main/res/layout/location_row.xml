@@ -22,7 +22,7 @@
             android:background="#9DC1D5">
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textViewLocationName"
                 android:layout_width="wrap_content"
                 android:layout_height="16dp"
                 android:layout_marginStart="80dp"
@@ -33,17 +33,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description"
+            <Button
+                android:id="@+id/editLocationButton"
+                android:layout_width="70dp"
+                android:layout_height="0dp"
+                android:drawableLeft="@drawable/edit_icon"
+                android:text="Update"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.647"
+                app:layout_constraintEnd_toStartOf="@+id/deleteLocationButton"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.518" />
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/deleteLocationButton"
+                android:layout_width="70dp"
+                android:layout_height="0dp"
+                android:drawableLeft="@drawable/delete_icon"
+                android:text="Delete"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

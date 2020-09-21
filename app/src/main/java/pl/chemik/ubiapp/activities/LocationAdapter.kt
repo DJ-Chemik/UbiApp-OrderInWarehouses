@@ -26,7 +26,6 @@ class LocationAdapter(ct: Context, s1: Array<String>, s2: Array<String>) : Recyc
 
         override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
         holder.textView1.text = data1[position];
-        holder.textView2.text = data2[position];
     }
 
     override fun getItemCount(): Int {
@@ -36,11 +35,9 @@ class LocationAdapter(ct: Context, s1: Array<String>, s2: Array<String>) : Recyc
     class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var textView1: TextView;
-        var textView2: TextView;
 
         init {
-            textView1 = itemView.findViewById(R.id.textView1);
-            textView2 = itemView.findViewById(R.id.textView2);
+            textView1 = itemView.findViewById(R.id.textViewLocationName);
 
         }
 
