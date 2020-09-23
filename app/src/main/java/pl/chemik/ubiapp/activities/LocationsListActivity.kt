@@ -1,12 +1,16 @@
 package pl.chemik.ubiapp.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pl.chemik.ubiapp.R
+import pl.chemik.ubiapp.database.entities.Location
 
-class LocationsListActivity : AppCompatActivity() {
+class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener {
 
     var recyclerView: RecyclerView? = null;
     lateinit var s1: Array<String>;
@@ -22,6 +26,28 @@ class LocationsListActivity : AppCompatActivity() {
         val locationAdapter = LocationAdapter(this, s1, s2);
         recyclerView?.adapter = locationAdapter;
         recyclerView?.layoutManager = LinearLayoutManager(this);
+        locationAdapter.setItemClickListener(this);
+    }
+
+    fun onAddClick(view: View) {
+        val intent = Intent(this, AddLocationActivity::class.java);
+        intent.putExtra("typeOperation", "add");
+        intent.putExtra("name", "");
+        startActivity(intent);
+    }
+
+    fun onEditClick(view: View) {
+        val intent = Intent(this, AddLocationActivity::class.java);
+        intent.putExtra("typeOperation", "edit");
+        intent.putExtra("name", s1[0]);
+        startActivity(intent);
+    }
+
+    override fun onItemClickListener(location: Location) {
+        val intent = Intent(this, AddLocationActivity::class.java);
+        intent.putExtra("typeOperation", "edit");
+        intent.putExtra("name", location.name);
+        startActivity(intent);
     }
 
 

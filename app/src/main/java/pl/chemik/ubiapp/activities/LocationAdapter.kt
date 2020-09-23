@@ -7,37 +7,70 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pl.chemik.ubiapp.R
+import pl.chemik.ubiapp.database.entities.Location
 
-class LocationAdapter(ct: Context, s1: Array<String>, s2: Array<String>) : RecyclerView.Adapter<LocationAdapter.LocationViewHolder>() {
 
-    val data1: Array<String> = s1;
-    val data2: Array<String> = s2;
+interface ItemClickListener {
+    fun onItemClick(view: View, position: Int);
+}
+
+interface RecycledListItemClickListener {
+    fun onItemClickListener(location: Location)
+}
+
+class LocationAdapter(ct: Context, s1: Array<String>, s2: Array<String>) : RecyclerView.Adapter<LocationAdapter.LocationViewHolder>(), ItemClickListener {
+
+    val locationNames: Array<String> = s1;
     val context: Context = ct;
-
-    init {
-
-    }
+    private var listener: RecycledListItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {
         val inflater = LayoutInflater.from(context);
         val view = inflater.inflate(R.layout.location_row, parent, false);
-        return LocationViewHolder(view);
+        val viewHolder = LocationViewHolder(view);
+        viewHolder.setItemClickListener(this);
+        return viewHolder;
     }
 
-        override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
-        holder.textView1.text = data1[position];
+    override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
+        holder.textView1.text = locationNames[position];
     }
+
+    override fun onItemClick(view: View, position: Int) {
+        val selectedLocation = Location(locationNames.get(position));
+        listener?.onItemClickListener(selectedLocation);
+    }
+
+    fun setItemClickListener(listener: RecycledListItemClickListener?) {
+        this.listener = listener;
+    }
+
 
     override fun getItemCount(): Int {
-        return data1.size;
+        return locationNames.size;
     }
 
-    class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
 
         var textView1: TextView;
+        protected var mItemClickListener: ItemClickListener? = null;
 
         init {
             textView1 = itemView.findViewById(R.id.textViewLocationName);
+            super.itemView.setOnClickListener(this);
+        }
+
+        fun setItemClickListener(itemClickListener: ItemClickListener) {
+            mItemClickListener = itemClickListener
+        }
+
+        override fun onClick(view: View) {
+            if (mItemClickListener != null) {
+                val adapterPosition = adapterPosition
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    mItemClickListener!!.onItemClick(view, adapterPosition)
+                }
+            }
 
         }
 

@@ -38,6 +38,7 @@
                 android:layout_width="70dp"
                 android:layout_height="0dp"
                 android:drawableLeft="@drawable/edit_icon"
+                android:onClick="onEditClick"
                 android:text="Update"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/deleteLocationButton"
