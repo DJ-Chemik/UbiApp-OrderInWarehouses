@@ -18,10 +18,10 @@ interface RecycledListItemClickListener {
     fun onItemClickListener(location: Location)
 }
 
-class LocationAdapter(ct: Context, s1: Array<String>, s2: Array<String>) : RecyclerView.Adapter<LocationAdapter.LocationViewHolder>(), ItemClickListener {
+class LocationAdapter(context: Context, locations: List<Location>) : RecyclerView.Adapter<LocationAdapter.LocationViewHolder>(), ItemClickListener {
 
-    val locationNames: Array<String> = s1;
-    val context: Context = ct;
+    val locations: List<Location> = locations;
+    val context: Context = context;
     private var listener: RecycledListItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {
@@ -33,11 +33,11 @@ class LocationAdapter(ct: Context, s1: Array<String>, s2: Array<String>) : Recyc
     }
 
     override fun onBindViewHolder(holder: LocationViewHolder, position: Int) {
-        holder.textView1.text = locationNames[position];
+        holder.textView1.text = locations[position].name;
     }
 
     override fun onItemClick(view: View, position: Int) {
-        val selectedLocation = Location(locationNames.get(position));
+        val selectedLocation = Location(locations.get(position).name);
         listener?.onItemClickListener(selectedLocation);
     }
 
@@ -47,7 +47,7 @@ class LocationAdapter(ct: Context, s1: Array<String>, s2: Array<String>) : Recyc
 
 
     override fun getItemCount(): Int {
-        return locationNames.size;
+        return locations.size;
     }
 
     class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
