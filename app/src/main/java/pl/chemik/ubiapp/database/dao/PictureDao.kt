@@ -8,8 +8,8 @@ import pl.chemik.ubiapp.database.entities.Picture
 
 @Dao
 interface PictureDao {
-    @Insert
-    fun create(item: Picture): Single<Int>;
+//    @Insert
+//    fun create(item: Picture): Single<Int>;
 
     @Update
     fun update(item: Picture): Completable;

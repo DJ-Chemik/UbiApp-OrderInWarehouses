@@ -9,8 +9,8 @@ import io.reactivex.Single
 @Dao
 interface ItemDao {
 
-    @Insert
-    fun create(item: Item): Single<Int>;
+//    @Insert
+//    fun create(item: Item): Single<Int>;
 
     @Update
     fun update(item: Item): Completable;

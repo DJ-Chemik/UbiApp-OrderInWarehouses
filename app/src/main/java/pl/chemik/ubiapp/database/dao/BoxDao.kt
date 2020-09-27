@@ -8,8 +8,8 @@ import pl.chemik.ubiapp.database.entities.Box
 
 @Dao
 interface BoxDao {
-    @Insert
-    fun create(item: Box): Single<Int>;
+//    @Insert
+//    fun create(item: Box): Single<Int>;
 
     @Update
     fun update(item: Box): Completable;

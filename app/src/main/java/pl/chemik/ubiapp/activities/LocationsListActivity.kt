@@ -7,8 +7,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.Observable
 import pl.chemik.ubiapp.R
+import pl.chemik.ubiapp.database.UbiApp
 import pl.chemik.ubiapp.database.entities.Location
+import java.util.*
 
 class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener {
 
@@ -19,14 +22,27 @@ class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_locations_list);
-        recyclerView = findViewById(R.id.recyclerLocations)
+        recyclerView = findViewById(R.id.recyclerLocations);
         s1 = resources.getStringArray(R.array.programming_languages);
         s2 = resources.getStringArray(R.array.description);
-
+        changeDatabase();
         val locationAdapter = LocationAdapter(this, s1, s2);
         recyclerView?.adapter = locationAdapter;
         recyclerView?.layoutManager = LinearLayoutManager(this);
         locationAdapter.setItemClickListener(this);
+        val locationDao = UbiApp.database?.locationDao();
+//        Observable.fromCallable {
+//            locationDao?.getAll()
+//        }.doOnNext({list ->
+//            var finalString = ""
+//            list?.map { finalString+= it.name+" - " }
+//            Log.d("Lo-------------------c", finalString);
+//        })
+
+    }
+
+    fun changeDatabase() {
+
     }
 
     fun onAddClick(view: View) {

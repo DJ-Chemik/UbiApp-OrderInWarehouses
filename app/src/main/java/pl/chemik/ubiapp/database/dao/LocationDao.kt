@@ -8,8 +8,8 @@ import pl.chemik.ubiapp.database.entities.Location
 
 @Dao
 interface LocationDao {
-    @Insert
-    fun create(item: Location): Single<Int>;
+//    @Insert
+//    fun create(item: Location): Single<Integer>;
 
     @Update
     fun update(item: Location): Completable;

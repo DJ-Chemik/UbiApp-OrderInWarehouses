@@ -12,7 +12,7 @@ data class Picture (
     @ColumnInfo(name = "box_id")
     var box_id: Int,
 
-    @ColumnInfo(name = "box_id")
+    @ColumnInfo(name = "item_id")
     var item_id: Int
 ) {
     @PrimaryKey(autoGenerate = true)

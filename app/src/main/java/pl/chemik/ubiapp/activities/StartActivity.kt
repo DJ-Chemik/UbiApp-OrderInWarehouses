@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import pl.chemik.ubiapp.R
+import pl.chemik.ubiapp.database.UbiApp
+import pl.chemik.ubiapp.database.UbiDatabase
 
 class StartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        UbiApp.database = UbiDatabase.getDatabase(this);
     }
 
     fun clickGoToLocationsList(view: View) {
