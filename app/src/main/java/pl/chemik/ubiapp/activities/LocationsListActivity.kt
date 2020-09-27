@@ -30,14 +30,19 @@ class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener
         recyclerView?.adapter = locationAdapter;
         recyclerView?.layoutManager = LinearLayoutManager(this);
         locationAdapter.setItemClickListener(this);
-        val locationDao = UbiApp.database?.locationDao();
-//        Observable.fromCallable {
-//            locationDao?.getAll()
-//        }.doOnNext({list ->
-//            var finalString = ""
-//            list?.map { finalString+= it.name+" - " }
-//            Log.d("Lo-------------------c", finalString);
-//        })
+
+        Thread(Runnable {
+            val locationDao = UbiApp.database?.locationDao();
+            locationDao?.create(Location("strych"))
+            locationDao?.create(Location("piwnica"))
+            val locations = locationDao?.getAll();
+            if (locations!=null) {
+                for (location in locations) {
+                    Log.d("=============", location.name)
+                }
+
+            }
+        })
 
     }
 

@@ -8,15 +8,15 @@ import pl.chemik.ubiapp.database.entities.Location
 
 @Dao
 interface LocationDao {
-//    @Insert
-//    fun create(item: Location): Single<Integer>;
+    @Insert
+    fun create(item: Location)
 
     @Update
-    fun update(item: Location): Completable;
+    fun update(item: Location)
 
     @Delete
-    fun delete(item: Location): Completable;
+    fun delete(item: Location)
 
     @Query("SELECT * FROM location")
-    fun getAll(): Maybe<Location>;
+    fun getAll(): List<Location>;
 }

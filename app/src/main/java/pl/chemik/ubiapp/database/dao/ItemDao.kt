@@ -9,14 +9,14 @@ import io.reactivex.Single
 @Dao
 interface ItemDao {
 
-//    @Insert
-//    fun create(item: Item): Single<Int>;
+    @Insert
+    fun create(item: Item)
 
     @Update
-    fun update(item: Item): Completable;
+    fun update(item: Item)
 
     @Delete
-    fun delete(item: Item): Completable;
+    fun delete(item: Item)
 
     @Query("SELECT * FROM item")
     fun getAll(): Maybe<Item>;

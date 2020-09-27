@@ -8,15 +8,15 @@ import pl.chemik.ubiapp.database.entities.Box
 
 @Dao
 interface BoxDao {
-//    @Insert
-//    fun create(item: Box): Single<Int>;
+    @Insert
+    fun create(item: Box)
 
     @Update
-    fun update(item: Box): Completable;
+    fun update(item: Box)
 
     @Delete
-    fun delete(item: Box): Completable;
+    fun delete(item: Box)
 
     @Query("SELECT * FROM box")
-    fun getAll(): Maybe<Box>;
+    fun getAll(): Array<Box>;
 }

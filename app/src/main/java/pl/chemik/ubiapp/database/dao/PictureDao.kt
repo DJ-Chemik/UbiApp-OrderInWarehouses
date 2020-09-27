@@ -8,15 +8,15 @@ import pl.chemik.ubiapp.database.entities.Picture
 
 @Dao
 interface PictureDao {
-//    @Insert
-//    fun create(item: Picture): Single<Int>;
+    @Insert
+    fun create(item: Picture)
 
     @Update
-    fun update(item: Picture): Completable;
+    fun update(item: Picture)
 
     @Delete
-    fun delete(item: Picture): Completable;
+    fun delete(item: Picture)
 
     @Query("SELECT * FROM picture")
-    fun getAll(): Maybe<Picture>;
+    fun getAll(): Array<Picture>;
 }
