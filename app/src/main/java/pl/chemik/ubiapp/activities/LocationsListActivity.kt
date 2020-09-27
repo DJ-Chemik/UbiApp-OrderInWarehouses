@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Observable
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import pl.chemik.ubiapp.R
 import pl.chemik.ubiapp.database.UbiApp
 import pl.chemik.ubiapp.database.entities.Location
@@ -31,10 +33,10 @@ class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener
         recyclerView?.layoutManager = LinearLayoutManager(this);
         locationAdapter.setItemClickListener(this);
 
-        Thread(Runnable {
+        GlobalScope.launch {
             val locationDao = UbiApp.database?.locationDao();
-            locationDao?.create(Location("strych"))
-            locationDao?.create(Location("piwnica"))
+//            locationDao?.create(Location("strych"))
+//            locationDao?.create(Location("piwnica"))
             val locations = locationDao?.getAll();
             if (locations!=null) {
                 for (location in locations) {
@@ -42,7 +44,7 @@ class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener
                 }
 
             }
-        })
+        }
 
     }
 
