@@ -1,10 +1,7 @@
 package pl.chemik.ubiapp.database.dao
 
 import androidx.room.*
-import io.reactivex.Completable
-import io.reactivex.Maybe
 import pl.chemik.ubiapp.database.entities.Item
-import io.reactivex.Single
 
 @Dao
 interface ItemDao {
@@ -19,5 +16,8 @@ interface ItemDao {
     fun delete(item: Item)
 
     @Query("SELECT * FROM item")
-    fun getAll(): Maybe<Item>;
+    fun getAll(): List<Item>;
+
+    @Query("SELECT * FROM item WHERE id = :id")
+    fun getOneById(id: Int): Item;
 }

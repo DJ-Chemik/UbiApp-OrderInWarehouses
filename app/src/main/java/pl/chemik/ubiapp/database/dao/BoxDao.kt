@@ -1,10 +1,8 @@
 package pl.chemik.ubiapp.database.dao
 
 import androidx.room.*
-import io.reactivex.Completable
-import io.reactivex.Maybe
-import io.reactivex.Single
 import pl.chemik.ubiapp.database.entities.Box
+import pl.chemik.ubiapp.database.entities.Location
 
 @Dao
 interface BoxDao {
@@ -18,5 +16,8 @@ interface BoxDao {
     fun delete(item: Box)
 
     @Query("SELECT * FROM box")
-    fun getAll(): Array<Box>;
+    fun getAll(): List<Box>;
+
+    @Query("SELECT * FROM box WHERE id = :id")
+    fun getOneById(id: Int): Location;
 }

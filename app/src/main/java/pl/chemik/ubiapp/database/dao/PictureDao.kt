@@ -1,9 +1,6 @@
 package pl.chemik.ubiapp.database.dao
 
 import androidx.room.*
-import io.reactivex.Completable
-import io.reactivex.Maybe
-import io.reactivex.Single
 import pl.chemik.ubiapp.database.entities.Picture
 
 @Dao
@@ -18,5 +15,8 @@ interface PictureDao {
     fun delete(item: Picture)
 
     @Query("SELECT * FROM picture")
-    fun getAll(): Array<Picture>;
+    fun getAll(): List<Picture>;
+
+    @Query("SELECT * FROM picture WHERE id = :id")
+    fun getOneById(id: Int): Picture;
 }
