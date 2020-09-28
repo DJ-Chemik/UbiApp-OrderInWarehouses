@@ -18,7 +18,8 @@ interface RecycledListItemClickListener {
     fun onItemClickListener(location: Location)
 }
 
-class LocationAdapter(context: Context, locations: List<Location>) : RecyclerView.Adapter<LocationAdapter.LocationViewHolder>(), ItemClickListener {
+class LocationAdapter(context: Context, locations: List<Location>) :
+    RecyclerView.Adapter<LocationAdapter.LocationViewHolder>(), ItemClickListener {
 
     val locations: List<Location> = locations;
     val context: Context = context;
@@ -50,7 +51,8 @@ class LocationAdapter(context: Context, locations: List<Location>) : RecyclerVie
         return locations.size;
     }
 
-    class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
+    class LocationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
 
         var textView1: TextView;
         protected var mItemClickListener: ItemClickListener? = null;

@@ -1,11 +1,10 @@
 package pl.chemik.ubiapp.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import pl.chemik.ubiapp.R
@@ -15,7 +14,7 @@ import pl.chemik.ubiapp.database.entities.Location
 
 class LocationModActivity : AppCompatActivity() {
 
-    lateinit var fieldName : TextView;
+    lateinit var fieldName: TextView;
     var typeOperation: String? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +23,10 @@ class LocationModActivity : AppCompatActivity() {
         fieldName = findViewById(R.id.editTextLocationName);
         typeOperation = intent.extras?.getString("typeOperation");
         fieldName.text = intent.extras?.getString("name");
-        if (typeOperation==="add") {
+        if (typeOperation == "add") {
 
         }
-        if (typeOperation==="edit") {
+        if (typeOperation == "edit") {
 
         }
 
@@ -46,14 +45,11 @@ class LocationModActivity : AppCompatActivity() {
         GlobalScope.launch {
             val locationDao = UbiApp.database?.locationDao();
             val id = intent.extras?.getInt("id");
-            Log.d("ID", id.toString())
             if (id != null) {
                 val locationToDelete = locationDao?.getOneById(id);
                 while (locationToDelete == null) {
 
                 }
-                Log.d("id to delete", locationToDelete.id.toString())
-                Log.d("Name", locationToDelete.name)
                 locationDao?.delete(locationToDelete);
             }
         }
