@@ -37,7 +37,7 @@ class LocationAdapter(context: Context, locations: List<Location>) : RecyclerVie
     }
 
     override fun onItemClick(view: View, position: Int) {
-        val selectedLocation = Location(locations.get(position).name);
+        val selectedLocation = locations.get(position);
         listener?.onItemClickListener(selectedLocation);
     }
 

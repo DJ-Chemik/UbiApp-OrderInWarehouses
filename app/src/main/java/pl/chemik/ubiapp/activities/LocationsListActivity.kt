@@ -22,6 +22,21 @@ class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_locations_list);
         recyclerView = findViewById(R.id.recyclerLocations);
+        initializeView();
+
+    }
+
+    override fun onRestart() {
+        super.onRestart();
+        initializeView();
+    }
+
+    override fun onResume() {
+        super.onResume();
+        initializeView();
+    }
+
+    fun initializeView() {
         loadLocationsFromDatabase();
         while (locations == null) {
             Log.d("WAITING", "Waiting for get locations")
@@ -30,7 +45,6 @@ class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener
         recyclerView?.adapter = locationAdapter;
         recyclerView?.layoutManager = LinearLayoutManager(this);
         locationAdapter.setItemClickListener(this);
-
     }
 
     fun loadLocationsFromDatabase() {
@@ -41,15 +55,16 @@ class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener
     }
 
     fun onAddClick(view: View) {
-        val intent = Intent(this, AddLocationActivity::class.java);
+        val intent = Intent(this, LocationModActivity::class.java);
         intent.putExtra("typeOperation", "add");
         intent.putExtra("name", "");
         startActivity(intent);
     }
 
     override fun onItemClickListener(location: Location) {
-        val intent = Intent(this, AddLocationActivity::class.java);
+        val intent = Intent(this, LocationModActivity::class.java);
         intent.putExtra("typeOperation", "edit");
+        intent.putExtra("id", location.id);
         intent.putExtra("name", location.name);
         startActivity(intent);
     }
