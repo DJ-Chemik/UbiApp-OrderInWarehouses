@@ -3,8 +3,10 @@ package pl.chemik.ubiapp.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import pl.chemik.ubiapp.R
@@ -24,7 +26,7 @@ class LocationModActivity : AppCompatActivity() {
         typeOperation = intent.extras?.getString("typeOperation");
         fieldName.text = intent.extras?.getString("name");
         if (typeOperation == "add") {
-
+            findViewById<Button>(R.id.deleteLocationButton).isVisible = false;
         }
         if (typeOperation == "edit") {
 
@@ -33,12 +35,27 @@ class LocationModActivity : AppCompatActivity() {
     }
 
     fun onAcceptClick(view: View) {
-        val intent = Intent(this, LocationsListActivity::class.java);
-        GlobalScope.launch {
-            val locationDao = UbiApp.database?.locationDao();
-            locationDao?.create(Location(fieldName.text.toString()));
+        val newIntent = Intent(this, LocationsListActivity::class.java);
+        if (typeOperation == "add") {
+            GlobalScope.launch {
+                val locationDao = UbiApp.database?.locationDao();
+                locationDao?.create(Location(fieldName.text.toString()));
+            }
         }
-        startActivity(intent);
+        if (typeOperation == "edit") {
+            GlobalScope.launch {
+                val id = intent.extras?.getInt("id");
+                val locationDao = UbiApp.database?.locationDao();
+                if (id != null) {
+                    val locationToEdit = locationDao?.getOneById(id)
+                    while (locationToEdit == null) {
+                    }
+                    locationToEdit.name = fieldName.text.toString();
+                    locationDao?.update(locationToEdit);
+                }
+            }
+        }
+        startActivity(newIntent);
     }
 
     fun clickDelete(view: View) {
@@ -48,7 +65,6 @@ class LocationModActivity : AppCompatActivity() {
             if (id != null) {
                 val locationToDelete = locationDao?.getOneById(id);
                 while (locationToDelete == null) {
-
                 }
                 locationDao?.delete(locationToDelete);
             }
