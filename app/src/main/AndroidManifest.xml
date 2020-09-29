@@ -12,11 +12,15 @@
         <activity android:name=".activities.LocationModActivity"></activity>
         <activity android:name=".activities.QRGeneratingActivity" />
         <activity android:name=".activities.ItemInformationActivity" />
-        <activity android:name=".activities.ItemsListActivity" />
+        <activity
+            android:name=".activities.ItemsListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".activities.BoxesListActivity" />
+        <activity
+            android:name=".activities.BoxesListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.LocationsListActivity"
             android:label="@string/title_activity_locations_list"

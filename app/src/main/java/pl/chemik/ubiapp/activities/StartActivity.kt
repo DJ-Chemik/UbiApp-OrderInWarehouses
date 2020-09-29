@@ -21,6 +21,11 @@ class StartActivity : AppCompatActivity() {
         startActivity(intent);
     }
 
+    fun clickGoToBoxesList(view: View) {
+        val intent = Intent(this, BoxesListActivity::class.java);
+        startActivity(intent);
+    }
+
     fun clickGoToItemsList(view: View) {
         val intent = Intent(this, ItemsListActivity::class.java);
         startActivity(intent);

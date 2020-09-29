@@ -69,5 +69,10 @@ class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener
         startActivity(intent);
     }
 
+    fun onBackkClick(view: View) {
+        val intent = Intent(this, StartActivity::class.java);
+        startActivity(intent);
+    }
+
 
 }

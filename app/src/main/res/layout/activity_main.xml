@@ -7,6 +7,21 @@
     tools:context=".activities.StartActivity">
 
     <Button
+        android:id="@+id/buttonListBoxes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:onClick="clickGoToBoxesList"
+        android:text="Lista pudeł"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <Button
         android:id="@+id/buttonListItems"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -14,12 +29,12 @@
         android:layout_marginEnd="20dp"
         android:onClick="clickGoToItemsList"
         android:text="Lista przedmiotów"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonListBoxes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.952" />
 
     <Button
         android:id="@+id/buttonListLocations"
@@ -33,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonListItems"
+        app:layout_constraintTop_toBottomOf="@+id/buttonListBoxes"
         app:layout_constraintVertical_bias="0.05" />
 
     <Button
@@ -64,6 +79,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSettings"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.076" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

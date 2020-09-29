@@ -27,9 +27,10 @@ class LocationModActivity : AppCompatActivity() {
         fieldName.text = intent.extras?.getString("name");
         if (typeOperation == "add") {
             findViewById<Button>(R.id.deleteLocationButton).isVisible = false;
+            findViewById<Button>(R.id.acceptLocationButton).text = "Dodaj";
         }
         if (typeOperation == "edit") {
-
+            findViewById<Button>(R.id.acceptLocationButton).text = "Edytuj";
         }
 
     }
