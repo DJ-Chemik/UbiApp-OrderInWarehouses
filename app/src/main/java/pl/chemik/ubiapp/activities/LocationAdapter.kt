@@ -10,20 +10,20 @@ import pl.chemik.ubiapp.R
 import pl.chemik.ubiapp.database.entities.Location
 
 
-interface ItemClickListener {
+interface LocationClickListener {
     fun onItemClick(view: View, position: Int);
 }
 
-interface RecycledListItemClickListener {
+interface RecycledListLocationClickListener {
     fun onItemClickListener(location: Location)
 }
 
 class LocationAdapter(context: Context, locations: List<Location>) :
-    RecyclerView.Adapter<LocationAdapter.LocationViewHolder>(), ItemClickListener {
+    RecyclerView.Adapter<LocationAdapter.LocationViewHolder>(), LocationClickListener {
 
     val locations: List<Location> = locations;
     val context: Context = context;
-    private var listener: RecycledListItemClickListener? = null
+    private var listener: RecycledListLocationClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {
         val inflater = LayoutInflater.from(context);
@@ -42,7 +42,7 @@ class LocationAdapter(context: Context, locations: List<Location>) :
         listener?.onItemClickListener(selectedLocation);
     }
 
-    fun setItemClickListener(listener: RecycledListItemClickListener?) {
+    fun setItemClickListener(listener: RecycledListLocationClickListener?) {
         this.listener = listener;
     }
 
@@ -55,22 +55,22 @@ class LocationAdapter(context: Context, locations: List<Location>) :
         View.OnClickListener {
 
         var textView1: TextView;
-        protected var mItemClickListener: ItemClickListener? = null;
+        protected var mLocationClickListener: LocationClickListener? = null;
 
         init {
             textView1 = itemView.findViewById(R.id.textViewLocationName);
             super.itemView.setOnClickListener(this);
         }
 
-        fun setItemClickListener(itemClickListener: ItemClickListener) {
-            mItemClickListener = itemClickListener
+        fun setItemClickListener(locationClickListener: LocationClickListener) {
+            mLocationClickListener = locationClickListener
         }
 
         override fun onClick(view: View) {
-            if (mItemClickListener != null) {
+            if (mLocationClickListener != null) {
                 val adapterPosition = adapterPosition
                 if (adapterPosition != RecyclerView.NO_POSITION) {
-                    mItemClickListener!!.onItemClick(view, adapterPosition)
+                    mLocationClickListener!!.onItemClick(view, adapterPosition)
                 }
             }
 

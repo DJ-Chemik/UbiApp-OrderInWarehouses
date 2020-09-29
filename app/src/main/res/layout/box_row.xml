@@ -21,7 +21,7 @@
             android:background="#9DC1D5">
 
             <TextView
-                android:id="@+id/textViewLocationName"
+                android:id="@+id/textViewBoxName"
                 android:layout_width="wrap_content"
                 android:layout_height="16dp"
                 android:text="Title"

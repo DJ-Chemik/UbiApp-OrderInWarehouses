@@ -13,7 +13,7 @@ import pl.chemik.ubiapp.R
 import pl.chemik.ubiapp.database.UbiApp
 import pl.chemik.ubiapp.database.entities.Location
 
-class LocationsListActivity : AppCompatActivity(), RecycledListItemClickListener {
+class LocationsListActivity : AppCompatActivity(), RecycledListLocationClickListener {
 
     var recyclerView: RecyclerView? = null;
     var locations: List<Location>? = null;
