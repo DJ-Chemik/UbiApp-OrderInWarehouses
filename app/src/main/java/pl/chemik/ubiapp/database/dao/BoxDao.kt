@@ -19,5 +19,5 @@ interface BoxDao {
     fun getAll(): List<Box>;
 
     @Query("SELECT * FROM box WHERE id = :id")
-    fun getOneById(id: Int): Location;
+    fun getOneById(id: Int): Box;
 }

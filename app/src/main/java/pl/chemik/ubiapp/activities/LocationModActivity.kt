@@ -32,7 +32,6 @@ class LocationModActivity : AppCompatActivity() {
         if (typeOperation == "edit") {
             findViewById<Button>(R.id.acceptLocationButton).text = "Edytuj";
         }
-
     }
 
     fun onAcceptClick(view: View) {

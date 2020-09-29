@@ -12,9 +12,8 @@ import kotlinx.coroutines.launch
 import pl.chemik.ubiapp.R
 import pl.chemik.ubiapp.database.UbiApp
 import pl.chemik.ubiapp.database.entities.Box
-import pl.chemik.ubiapp.database.entities.Location
 
-class BoxesListActivity : AppCompatActivity() {
+class BoxesListActivity : AppCompatActivity(), RecycledListBoxClickListener {
 
     var recyclerView: RecyclerView? = null;
     var boxes: List<Box>? = null;
@@ -41,10 +40,10 @@ class BoxesListActivity : AppCompatActivity() {
         while (boxes == null) {
             Log.d("WAITING", "Waiting for get boxes")
         }
-        val locationAdapter = LocationAdapter(this, boxes!!);
-        recyclerView?.adapter = locationAdapter;
+        val boxAdapter = BoxAdapter(this, boxes!!);
+        recyclerView?.adapter = boxAdapter;
         recyclerView?.layoutManager = LinearLayoutManager(this);
-//        locationAdapter.setItemClickListener(this);
+        boxAdapter.setItemClickListener(this);
     }
 
     fun loadBoxesFromDatabase() {
@@ -55,17 +54,24 @@ class BoxesListActivity : AppCompatActivity() {
     }
 
     fun onAddClick(view: View) {
-        val intent = Intent(this, LocationModActivity::class.java);
+        val intent = Intent(this, BoxModActivity::class.java);
         intent.putExtra("typeOperation", "add");
         intent.putExtra("name", "");
+        intent.putExtra("qrCode", "");
+        intent.putExtra("description", "");
+        intent.putExtra("locationId", "");
         startActivity(intent);
     }
 
-    override fun onItemClickListener(location: Location) {
-        val intent = Intent(this, LocationModActivity::class.java);
+    override fun onItemClickListener(box: Box) {
+        val intent = Intent(this, BoxModActivity::class.java);
+        //todo
         intent.putExtra("typeOperation", "edit");
-        intent.putExtra("id", location.id);
-        intent.putExtra("name", location.name);
+        intent.putExtra("id", box.id);
+        intent.putExtra("name", box.name);
+        intent.putExtra("qrCode", box.qrCode);
+        intent.putExtra("description", box.description);
+        intent.putExtra("locationId", box.locationId);
         startActivity(intent);
     }
 

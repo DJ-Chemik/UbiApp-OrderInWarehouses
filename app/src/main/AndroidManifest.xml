@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.LocationModActivity"></activity>
+        <activity android:name=".activities.BoxModActivity"></activity>
+        <activity android:name=".activities.LocationModActivity" />
         <activity android:name=".activities.QRGeneratingActivity" />
         <activity android:name=".activities.ItemInformationActivity" />
         <activity
