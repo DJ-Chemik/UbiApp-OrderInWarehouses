@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context="pl.chemik.ubiapp.activities.ItemsListActivity">
 
     <TextView
@@ -16,7 +17,21 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.015" />
+
+    <Spinner
+        android:id="@+id/spinnerItemsListBoxes"
+        android:layout_width="144dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="12dp"
+        android:background="#B0E9EF"
+        android:paddingStart="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerItems"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextItemDescription"
+        app:layout_constraintVertical_bias="0.065" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerItems"
@@ -54,5 +69,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
+
+    <EditText
+        android:id="@+id/etSearchItems"
+        android:layout_width="186dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:ems="10"
+        android:hint="Szukaj"
+        android:inputType="textPersonName"
+        android:shadowColor="#0097A7"
+        android:textColor="#000000"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#1976D2"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerItems"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/spinnerItemsListBoxes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
