@@ -35,6 +35,7 @@ class ItemsListActivity : AppCompatActivity(), RecycledListItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_items_list)
+//        initializeView();
         recyclerView = findViewById(R.id.recyclerItems);
         spinnerBoxes = findViewById(R.id.spinnerItemsListBoxes);
         setListeners();

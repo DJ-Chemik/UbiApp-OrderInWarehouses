@@ -4,10 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pl.chemik.ubiapp.R
 import pl.chemik.ubiapp.database.entities.Box
+import pl.chemik.ubiapp.database.entities.Item
+import java.util.*
+import kotlin.collections.ArrayList
 
 interface BoxClickListener {
     fun onItemClick(view: View, position: Int);
@@ -18,9 +23,10 @@ interface RecycledListBoxClickListener {
 }
 
 class BoxAdapter(context: Context, boxes: List<Box>) :
-    RecyclerView.Adapter<BoxAdapter.BoxViewHolder>(), BoxClickListener {
+    RecyclerView.Adapter<BoxAdapter.BoxViewHolder>(), BoxClickListener, Filterable {
 
     val boxes: List<Box> = boxes;
+    var boxFilterList: List<Box> = boxes;
     val context: Context = context;
     private var listener: RecycledListBoxClickListener? = null
 
@@ -32,12 +38,67 @@ class BoxAdapter(context: Context, boxes: List<Box>) :
         return viewHolder;
     }
 
+    fun filterByBox(locationId: Int): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                if (locationId == -1) {
+                    boxFilterList = boxes
+                } else {
+                    val resultList = ArrayList<Box>()
+                    for (row in boxes) {
+                        if (row.locationId == locationId) {
+                            resultList.add(row)
+                        }
+                    }
+                    boxFilterList = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = boxFilterList
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                boxFilterList = results?.values as ArrayList<Box>
+                notifyDataSetChanged()
+            }
+        };
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    boxFilterList = boxes
+                } else {
+                    val resultList = ArrayList<Box>()
+                    for (row in boxes) {
+                        if (row.name.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                            resultList.add(row)
+                        }
+                    }
+                    boxFilterList = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = boxFilterList
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                boxFilterList = results?.values as ArrayList<Box>
+                notifyDataSetChanged()
+            }
+        }
+    }
+
     override fun onBindViewHolder(holder: BoxAdapter.BoxViewHolder, position: Int) {
-        holder.textView1.text = boxes[position].name;
+        holder.textView1.text = boxFilterList[position].name;
     }
 
     override fun onItemClick(view: View, position: Int) {
-        val selectedBox = boxes.get(position);
+        val selectedBox = boxFilterList.get(position);
         listener?.onItemClickListener(selectedBox);
     }
 
@@ -47,7 +108,7 @@ class BoxAdapter(context: Context, boxes: List<Box>) :
 
 
     override fun getItemCount(): Int {
-        return boxes.size;
+        return boxFilterList.size;
     }
 
 
