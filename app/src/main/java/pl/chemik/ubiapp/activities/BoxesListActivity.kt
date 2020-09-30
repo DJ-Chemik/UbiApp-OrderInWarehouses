@@ -65,7 +65,6 @@ class BoxesListActivity : AppCompatActivity(), RecycledListBoxClickListener {
 
     override fun onItemClickListener(box: Box) {
         val intent = Intent(this, BoxModActivity::class.java);
-        //todo
         intent.putExtra("typeOperation", "edit");
         intent.putExtra("id", box.id);
         intent.putExtra("name", box.name);
