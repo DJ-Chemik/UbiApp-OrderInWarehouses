@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pl.chemik.ubiapp.R
 import pl.chemik.ubiapp.database.entities.Box
-import pl.chemik.ubiapp.database.entities.Item
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -74,7 +73,9 @@ class BoxAdapter(context: Context, boxes: List<Box>) :
                 } else {
                     val resultList = ArrayList<Box>()
                     for (row in boxes) {
-                        if (row.name.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (row.name.toLowerCase(Locale.ROOT)
+                                .contains(charSearch.toLowerCase(Locale.ROOT))
+                        ) {
                             resultList.add(row)
                         }
                     }

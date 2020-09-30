@@ -1,7 +1,6 @@
 package pl.chemik.ubiapp.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.GlobalScope
@@ -70,16 +70,23 @@ class BoxesListActivity : AppCompatActivity(), RecycledListBoxClickListener {
             locationIds.add(location.id)
             locationNames.add(location.name)
         }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, locationNames!!)
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, locationNames!!)
         spinnerLocations.adapter = adapter;
         spinnerLocations.setSelection(0);
     }
 
     fun setListeners() {
-        spinnerLocations.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        spinnerLocations.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 onClickSpinnerBoxes(view, position, id);
             }
         }

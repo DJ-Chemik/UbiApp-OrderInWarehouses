@@ -1,7 +1,6 @@
 package pl.chemik.ubiapp.activities
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,10 +43,8 @@ class ItemAdapter(context: Context, items: List<Item>) :
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 if (boxId == -1) {
-                    Log.e("---", "-1")
                     itemFilterList = items
                 } else {
-                    Log.d("----", boxId.toString())
                     val resultList = ArrayList<Item>()
                     for (row in items) {
                         if (row.boxId == boxId) {
@@ -78,7 +75,9 @@ class ItemAdapter(context: Context, items: List<Item>) :
                 } else {
                     val resultList = ArrayList<Item>()
                     for (row in items) {
-                        if (row.name.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (row.name.toLowerCase(Locale.ROOT)
+                                .contains(charSearch.toLowerCase(Locale.ROOT))
+                        ) {
                             resultList.add(row)
                         }
                     }
